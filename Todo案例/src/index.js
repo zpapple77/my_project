@@ -10,12 +10,9 @@ import TodoFooter from './components/TodoFooter'
 
 class App extends Component {
   state = {
-    list: [
-      { id: 1, name: '吃饭', done: false },
-      { id: 2, name: '睡觉', done: true },
-      { id: 3, name: '学习', done: true },
-    ],
-    type: '',
+    list: [],
+    // 有三个值  all  active  completed
+    type: 'all',
   }
   render() {
     const { list, type } = this.state
@@ -29,7 +26,7 @@ class App extends Component {
           updateDoneById={this.updateDoneById}
           editTodo={this.editTodo}
           type={type}
-          checkAll = {this.checkAll}
+          checkAll={this.checkAll}
         ></TodoMain>
         <TodoFooter
           list={list}
@@ -97,13 +94,21 @@ class App extends Component {
   }
   checkAll = (check) => {
     this.setState({
-      list:this.state.list.map(item=>{
+      list: this.state.list.map((item) => {
         return {
           ...item,
-          done:check
+          done: check,
         }
-      })
+      }),
     })
+  }
+  componentDidMount() {
+    this.setState({
+      list: JSON.parse(localStorage.getItem('todos')) || [],
+    })
+  }
+  componentDidUpdate() {
+    localStorage.setItem('todos', JSON.stringify(this.state.list))
   }
 }
 
