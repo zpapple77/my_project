@@ -1,0 +1,22 @@
+.login {
+ width: 100vw;
+ height: 100vh;
+ /* position: absolute; 可以不适用vw/wh的单位改用此句*/
+ background-image: url('../../assets/login.png');
+ background-size: cover;
+ position: relative;
+} 
+.login-container{
+    width: 440px;
+    height: 360px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.login-logo{
+    width: 200px;
+    height: 60px;
+    display: block;
+    margin: 0 auto 20px;
+}
